@@ -60,4 +60,5 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
    4. `auxilio_final_de_ano`
    5. `bonificacao`
    6. [`Combinação dos modelos`](notebooks_models/todos_produtos_arima.ipynb)
-3. Comparação entre modelos
+
+### III. Comparação entre modelos
