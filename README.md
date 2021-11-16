@@ -62,3 +62,11 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
    6. [`Combinação dos modelos`](notebooks_models/todos_produtos_arima.ipynb)
 
 ### III. Comparação entre modelos
+
+## Ambiente
+
+Para criar o ambiente Anaconda apropriado,
+
+```python
+$ conda env create -f environment.yml
+```

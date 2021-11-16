@@ -193,6 +193,7 @@ dependencies:
     - colorlover==0.3.0
     - cookiecutter==1.7.3
     - cufflinks==0.17.3
+    - cython==0.29.24
     - dill==0.3.4
     - fastprogress==1.0.0
     - filelock==3.3.1
@@ -217,6 +218,7 @@ dependencies:
     - patsy==0.5.2
     - phik==0.12.0
     - plotly==5.2.2
+    - pmdarima==1.8.4
     - poyo==0.5.0
     - protobuf==3.17.3
     - pyarrow==5.0.0
