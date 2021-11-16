@@ -30,10 +30,34 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 
 ## Informações sobre o dataset
 
-* **[sim_ts.txt](sim_ts.txt)** - Série temporal sintética com os meses (a data está completa com ano, mês e dia, mas o dia é irrelevante), os valores recebidos e o produto correspondente.
+* **[sim_ts.txt](data/sim_ts.txt)** - Série temporal sintética com os meses (a data está completa com ano, mês e dia, mas o dia é irrelevante), os valores recebidos e o produto correspondente.
 
 ### Campos
 
 * **vlr**: Vlr. faturado no mês
 * **date**: Mês de referência do faturamento
 * **produto**: Produto ao qual o faturamento diz respeito
+
+## Solução
+
+### I. Análise exploratória de dados
+
+1. [Pré-processamento e tratamento de dados faltantes](notebooks_exploration/1-previsao_faturamento_preproc.ipynb)
+2. [Faturamento total](notebooks_exploration/2-faturamento_total.ipynb)
+3. [Produto: `alimenticio`](notebooks_exploration/3-produto_alimenticio.ipynb)
+4. Produto: `transporte`
+5. Produto: `saude`
+6. Produto: `auxilio_final_de_ano`
+7. Produto: `bonificacao`
+
+### II. Análise de séries temporais
+
+1. [Modelo para faturamento total](notebooks_models/total_arima.ipynb)
+2. Produtos individuais:
+   1. [`alimenticio`](notebooks_models/produto_alimenticio_arima.ipynb)
+   2. `transporte`
+   3. `saude`
+   4. `auxilio_final_de_ano`
+   5. `bonificacao`
+   6. [`Combinação dos modelos`](notebooks_models/todos_produtos_arima.ipynb)
+3. Comparação entre modelos
