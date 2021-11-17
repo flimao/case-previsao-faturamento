@@ -45,7 +45,7 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 1. [Pré-processamento e tratamento de dados faltantes](notebooks_exploration/1-previsao_faturamento_preproc.ipynb)
 2. [Faturamento total](notebooks_exploration/2-faturamento_total.ipynb)
 3. [Produto: `alimenticio`](notebooks_exploration/3-produto_alimenticio.ipynb)
-4. Produto: `transporte`
+4. [Produto: `transporte`](notebooks_exploration/4-produto_transporte.ipynb)
 5. Produto: `saude`
 6. Produto: `auxilio_final_de_ano`
 7. Produto: `bonificacao`
