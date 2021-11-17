@@ -46,7 +46,7 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 2. [Faturamento total](notebooks_exploration/2-faturamento_total.ipynb)
 3. [Produto: `alimenticio`](notebooks_exploration/3-produto_alimenticio.ipynb)
 4. [Produto: `transporte`](notebooks_exploration/4-produto_transporte.ipynb)
-5. Produto: `saude`
+5. [Produto: `saude`](notebooks_exploration/5-produto_saude.ipynb)
 6. Produto: `auxilio_final_de_ano`
 7. Produto: `bonificacao`
 
@@ -55,7 +55,7 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 1. [Modelo para faturamento total](notebooks_models/total_arima.ipynb)
 2. Produtos individuais:
    1. [`alimenticio`](notebooks_models/produto_alimenticio_arima.ipynb)
-   2. `transporte`
+   2. [`transporte`](notebooks_models/produto_transporte_arima.ipynb)
    3. `saude`
    4. `auxilio_final_de_ano`
    5. `bonificacao`
