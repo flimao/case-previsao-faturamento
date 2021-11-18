@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from statsmodels.tsa.seasonal import seasonal_decompose
+from sklearn.metrics import mean_absolute_percentage_error as smape, mean_squared_error as smse
 
 def dados_faltantes(tswide: pd.DataFrame, produtos: List = None) -> None:
     """Function to greet
@@ -66,3 +67,52 @@ def decomp_fourier(serie_fat: pd.Series, produto: str, c: str) -> object:
     plt.show()
 
     return decomp
+
+def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_treino: pd.Series or None = None, ci: bool = False, in_sample: bool = True, preds_metrics: bool = True) -> pd.Series:
+    n_test_periods = serie_teste.shape[0]
+
+    arr_preds = modelo.predict(n_periods = n_test_periods, return_conf_int = ci)
+    idx = pd.date_range(freq = 'MS', start = serie_teste.index[0], periods = n_test_periods)
+    
+    if ci:
+        preds = pd.Series(arr_preds[0], index = idx)
+        preds_bounds = pd.DataFrame(arr_preds[1], columns = ['lb', 'ub'], index = idx)
+    else:
+        preds = pd.Series(arr_preds, index = idx)
+    
+    if in_sample and serie_treino is not None:
+        arr_preds_in_sample = modelo.predict_in_sample()
+        idx_in_sample = serie_treino.index
+        preds_in_sample = pd.Series(arr_preds_in_sample, index = idx_in_sample)
+    
+    preds.name = 'yearly_preds'
+
+    palette = sns.color_palette(None, 4)
+    
+    label_preds = 'Predição'
+    if preds_metrics:
+        kwargs_metrics = dict(
+            y_true = serie_teste, 
+            y_pred = preds
+        )
+        mape = smape(**kwargs_metrics)
+        rmse = smse(**kwargs_metrics, squared = False)
+        label_preds += f'\n(MAPE = {mape:.2%}, RMSE = {rmse:.2e})'
+
+    preds.plot(label = label_preds, color = palette[2])
+    if ci:
+        plt.fill_between(idx, preds_bounds['lb'], preds_bounds['ub'], alpha = 0.3, color = 'gray')
+    if in_sample:
+        preds_in_sample.plot(label = '.', color = palette[2])
+    
+    serie_teste.plot(label = 'Conjunto de teste', color = palette[1])
+    
+    if serie_treino is not None:
+        serie_treino.plot(label = 'Conjunto de treino', color = palette[0])
+
+    plt.legend()
+    plt.ylabel('Faturamento total')
+    plt.title(f"Predição contra conjunto de teste (produto '{produto}')")
+    plt.show()
+
+    return preds
