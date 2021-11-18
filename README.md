@@ -56,7 +56,7 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 2. Produtos individuais:
    1. [`alimenticio`](notebooks_models/produto_alimenticio_arima.ipynb)
    2. [`transporte`](notebooks_models/produto_transporte_arima.ipynb)
-   3. `saude`
+   3. [`saude`](notebooks_models/produto_saude_arima.ipynb)
    4. `auxilio_final_de_ano`
    5. `bonificacao`
    6. [Combinação dos modelos](notebooks_models/todos_produtos_arima.ipynb)
