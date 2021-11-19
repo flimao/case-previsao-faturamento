@@ -47,8 +47,8 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 3. [Produto: `alimenticio`](notebooks_exploration/3-produto_alimenticio.ipynb)
 4. [Produto: `transporte`](notebooks_exploration/4-produto_transporte.ipynb)
 5. [Produto: `saude`](notebooks_exploration/5-produto_saude.ipynb)
-6. Produto: `auxilio_final_de_ano`
-7. Produto: `bonificacao`
+6. [Produto: `auxilio_final_de_ano`](notebooks_exploration/6-produto_auxilio.ipynb)
+7. [Produto: `bonificacao`](notebooks_exploration/7-produto_bonificacao.ipynb)
 
 ### II. Análise de séries temporais
 
@@ -57,9 +57,9 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
    1. [`alimenticio`](notebooks_models/produto_alimenticio_arima.ipynb)
    2. [`transporte`](notebooks_models/produto_transporte_arima.ipynb)
    3. [`saude`](notebooks_models/produto_saude_arima.ipynb)
-   4. `auxilio_final_de_ano`
-   5. `bonificacao`
-   6. [Combinação dos modelos](notebooks_models/todos_produtos_arima.ipynb)
+   4. [`auxilio_final_de_ano`](notebooks_models/produto_auxilio_arima.ipynb)
+   5. [`bonificacao`](notebooks_models/produto_bonificacao_arima.ipynb)
+   6. [Modelo do faturamento total produto a produto](notebooks_models/todos_produtos_arima.ipynb)
 
 ### III. Comparação entre modelos
 
