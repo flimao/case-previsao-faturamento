@@ -51,13 +51,13 @@ def decomp_fourier(serie_fat: pd.Series, produto: str, c: str) -> object:
 
     sns.lineplot(data = ts_filtro, ax = axs[0], color = c)
     axs[0].set_title('Serie')
-    axs[0].set_ylabel('Faturamento (R$ bi)')
+    axs[0].set_ylabel('Faturamento')
 
     sns.lineplot(data = decomp.trend, ax = axs[1], color = c)
-    axs[1].set_ylabel('R$ 100 mi')
+    axs[1].set_ylabel('R$ 100')
 
     sns.lineplot(data = decomp.seasonal, ax = axs[2], color = c)
-    axs[2].set_ylabel('R$ mi')
+    axs[2].set_ylabel('R$')
 
     resid_standard = (decomp.resid - decomp.resid.mean()) / decomp.resid.std()
     sns.scatterplot(data = resid_standard, ax = axs[3], color = c)
@@ -92,8 +92,8 @@ def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_t
     label_preds = 'Predição'
     if preds_metrics:
         kwargs_metrics = dict(
-            y_true = serie_teste, 
-            y_pred = preds
+            y_true = serie_teste.dropna(), 
+            y_pred = preds[serie_teste.dropna().index]
         )
         mape = smape(**kwargs_metrics)
         rmse = smse(**kwargs_metrics, squared = False)
@@ -101,7 +101,7 @@ def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_t
 
     preds.plot(label = label_preds, color = palette[2])
     if ci:
-        plt.fill_between(idx, preds_bounds['lb'], preds_bounds['ub'], alpha = 0.3, color = 'gray')
+        plt.fill_between(idx, preds_bounds['lb'], preds_bounds['ub'], alpha = 0.2, color = palette[2])
     if in_sample:
         preds_in_sample.plot(label = '.', color = palette[2])
     

@@ -6,25 +6,46 @@ from sklearn.metrics import mean_absolute_percentage_error as smape, \
 
 from pmdarima.arima.arima import ARIMA
 
-def mostrar_metricas(y_true: pd.Series, y_pred: pd.Series, n: int = None, dof: int = None, *args, **kwargs) -> None:
-    mape = smape(*args, y_true = y_true, y_pred = y_pred, **kwargs)
-    rmse = smse(*args, y_true = y_true, y_pred = y_pred, squared = False, **kwargs)
-    mae = smae(*args, y_true = y_true, y_pred = y_pred, **kwargs)
+def mostrar_metricas(
+        y_true: pd.Series, y_pred: pd.Series, 
+        n: int = None, dof: int = None, 
+        calc_r2: bool = False,
+        *args, **kwargs
+    ) -> dict:
 
-    r2 = sr2(*args, y_true = y_true, y_pred = y_pred, **kwargs)
+    metrics = {}
 
-    if n is not None and dof is not None and n - dof > 1:
-        adj_r2 = 1 - (1-r2)*(n - 1) / (n - dof - 1)
+    metrics['MAPE'] = smape(*args, y_true = y_true, y_pred = y_pred, **kwargs)
+    metrics['RMSE'] = smse(*args, y_true = y_true, y_pred = y_pred, squared = False, **kwargs)
+    metrics['MAE'] = smae(*args, y_true = y_true, y_pred = y_pred, **kwargs)
+
+    if calc_r2:
+        metrics['R²'] = sr2(*args, y_true = y_true, y_pred = y_pred, **kwargs)
     else:
-        adj_r2 = None
+        metrics['R²'] = None
+
+    if metrics['R²'] is not None and \
+       n is not None and \
+       dof is not None and \
+       n - dof > 1:
+        
+        metrics['R² adj.'] = 1 - (1 - metrics['R²'])*(n - 1) / (n - dof - 1)
+    
+    else:
+        metrics['R² adj.'] = None
+
+    espacos = max([ len(k) for k in metrics.keys() ]) + 4
 
     print('Métricas:')
-    print(f'    MAPE: {mape:.3%}')
-    print(f'    RMSE: {rmse:.3e}')
-    print(f'     MAE: {mae:.3e}')
-    print(f'      R²: {r2:.3%}')
 
-    if adj_r2 is not None:
-        print(f' R² adj.: {adj_r2:.3%}')
-    
-    return
+    for n, v in metrics.items():
+        if v is None:
+            continue
+        
+        fmt = '.3e'
+        if n in ['MAPE', 'R²', 'R² adj.']:
+            fmt = '.3%'
+        
+        print(f'{n:>{espacos}s}: {v:{fmt}}')
+        
+    return metrics
