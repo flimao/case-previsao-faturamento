@@ -135,3 +135,16 @@ class modelo_produtos:
                 return preds_series.values
             else:
                 return preds_series
+    
+    def __str__(self):
+        totalstr = 'Modelos:'
+
+        tamanho_campo = max([ len(produto) for produto in self.produtos ]) + 4
+
+        for produto, modelo in self.modelo.items():
+            totalstr += f"\n{produto:>{tamanho_campo}s}: {modelo}"
+        
+        return totalstr
+    
+    def __repr__(self):
+        return str(self.modelo)
