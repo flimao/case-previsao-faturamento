@@ -98,7 +98,7 @@ def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_t
         )
         mape = smape(**kwargs_metrics)
         rmse = smse(**kwargs_metrics, squared = False)
-        label_preds += f'\n(MAPE = {mape:.2%}, RMSE = {rmse:.2e})'
+        label_preds += f'\n(MAPE = {mape:.3%}, RMSE = {rmse:.2e})'
 
     preds.plot(label = label_preds, color = palette[2])
     if ci:
