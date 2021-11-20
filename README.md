@@ -20,7 +20,7 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 ### Etapa I - **EDA - Análise exploratória de dados**
 
 1. Análise das medidas de medidas de posição, dispersão, correlação (análises univaridas e bivariadas) - histograma, boxplot, mapa de calor, etc...
-2. Identificação e tratamento de outliers e missings, caso necessário (sempre explicando a opção)
+2. Identificação e tratamento de *outliers* e *missings*, caso necessário (sempre explicando a opção)
 
 ### Etapa II - **Análise de séries temporais**
 
@@ -61,7 +61,8 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
    5. [`bonificacao`](notebooks_models/produto_bonificacao_arima.ipynb)
    6. [Modelo do faturamento total produto a produto](notebooks_models/todos_produtos_arima.ipynb)
 
-### III. Comparação entre modelos
+### III. [Comparação entre modelos](notebooks_exploration/8-comparacao.ipynb)
+
 
 ## Ambiente
 
