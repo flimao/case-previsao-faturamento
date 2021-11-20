@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os
-from typing import List
+from typing import List, Tuple
 import pandas as pd
 import numpy as np
 import datetime as dt
@@ -15,10 +15,9 @@ DATASET = r'../data/sim_ts_limpo.csv'
 class modelo_produtos:
     """ encapsulador para os modelos de cada produto """
 
-    def __init__(self, dataset: str = DATASET, modelsdir: str = MODELSDIR, predict_array: bool = True):
+    def __init__(self, dataset: str = DATASET, modelsdir: str = MODELSDIR):
         self.dataset = dataset
         self.modelsdir = modelsdir
-        self.predict_array = predict_array
 
         # importanto dados limpos
         ts_raw = pd.read_csv(self.dataset)
@@ -78,7 +77,10 @@ class modelo_produtos:
 
         return test_start
 
-    def predict(self, n_periods: int, return_conf_int: bool = False,  *args, **kwards):
+    def predict(self, n_periods: int, return_conf_int: bool = False,  
+        predict_array: bool = True,
+        *args, **kwards
+    ) -> pd.Series or pd.DataFrame or np.array or Tuple[np.array, np.array]:
 
         if n_periods <= 0:
             raise ValueError('Can only predict forward!')
@@ -147,7 +149,7 @@ class modelo_produtos:
             fat_test['lb'] = preds_ci.loc[:, (slice(None), 'lb')].dropna().sum(axis = 'columns')
             fat_test['ub'] = preds_ci.loc[:, (slice(None), 'ub')].dropna().sum(axis = 'columns')
             
-            if self.predict_array:
+            if predict_array:
                 return (
                     fat_test['predicted_mean'].values,
                     fat_test[['lb', 'ub']].values
@@ -156,11 +158,11 @@ class modelo_produtos:
                 return fat_test
         
         else:
-            if self.predict_array:
+            if predict_array:
                 return preds_series.values
             else:
                 return preds_series
-    
+
     def __str__(self):
         totalstr = 'Modelos:'
 
