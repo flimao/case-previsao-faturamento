@@ -137,3 +137,5 @@ dmypy.json
 # secrets.py files\
 secrets.py
 
+# model files
+models/*.model
