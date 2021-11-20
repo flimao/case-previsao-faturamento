@@ -68,7 +68,12 @@ def decomp_fourier(serie_fat: pd.Series, produto: str, c: str) -> object:
 
     return decomp
 
-def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_treino: pd.Series or None = None, ci: bool = False, in_sample: bool = True, preds_metrics: bool = True) -> pd.Series:
+def ajuste_grafico(
+    modelo: object, produto: str, 
+    serie_teste: pd.Series, serie_treino: pd.Series or None = None, 
+    ci: bool = False, in_sample: bool = True, preds_metrics: bool = True,
+) -> pd.Series:
+
     n_test_periods = serie_teste.shape[0]
 
     arr_preds = modelo.predict(n_periods = n_test_periods, return_conf_int = ci)
@@ -90,7 +95,7 @@ def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_t
 
     palette = sns.color_palette(None, 4)
     
-    label_preds = 'Predição'
+    label_preds = 'Previsão'
     if preds_metrics:
         kwargs_metrics = dict(
             y_true = serie_teste.dropna(), 
@@ -104,7 +109,7 @@ def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_t
     if ci:
         plt.fill_between(idx, preds_bounds['lb'], preds_bounds['ub'], alpha = 0.2, color = palette[2])
     if in_sample:
-        preds_in_sample.plot(label = '.', color = palette[2])
+        preds_in_sample.plot(color = palette[2])
     
     serie_teste.plot(label = 'Conjunto de teste', color = palette[1])
     
