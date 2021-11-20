@@ -50,6 +50,9 @@ class modelo_produtos:
             
         return modelo, serie_treino        
 
+    def get_models(self):
+        return self.modelo, self.serie_treino
+    
     def predict(self, n_periods: int, return_conf_int: bool = False,  *args, **kwards):
 
         if n_periods <= 0:
