@@ -83,6 +83,7 @@ def ajuste_grafico(modelo: object, produto: str, serie_teste: pd.Series, serie_t
     if in_sample and serie_treino is not None:
         arr_preds_in_sample = modelo.predict_in_sample()
         idx_in_sample = serie_treino.index
+        arr_preds_in_sample = arr_preds_in_sample[-len(idx_in_sample):]
         preds_in_sample = pd.Series(arr_preds_in_sample, index = idx_in_sample)
     
     preds.name = 'yearly_preds'

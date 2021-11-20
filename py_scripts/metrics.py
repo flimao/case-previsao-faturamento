@@ -13,6 +13,35 @@ def mostrar_metricas(
         *args, **kwargs
     ) -> dict:
 
+    metrics = calc_metricas(
+        y_true = y_true, y_pred = y_pred,
+        n = n, dof = dof,
+        *args, **kwargs
+    )
+
+    espacos = max([ len(k) for k in metrics.keys() ]) + 4
+
+    print('Métricas:')
+
+    for n, v in metrics.items():
+        if v is None:
+            continue
+        
+        fmt = '.3e'
+        if n in ['MAPE', 'R²', 'R² adj.']:
+            fmt = '.3%'
+        
+        print(f'{n:>{espacos}s}: {v:{fmt}}')
+        
+    return metrics
+
+def calc_metricas(
+        y_true: pd.Series, y_pred: pd.Series, 
+        n: int = None, dof: int = None, 
+        calc_r2: bool = False,
+        *args, **kwargs
+) -> dict:
+    
     metrics = {}
 
     metrics['MAPE'] = smape(*args, y_true = y_true, y_pred = y_pred, **kwargs)
@@ -33,19 +62,5 @@ def mostrar_metricas(
     
     else:
         metrics['R² adj.'] = None
-
-    espacos = max([ len(k) for k in metrics.keys() ]) + 4
-
-    print('Métricas:')
-
-    for n, v in metrics.items():
-        if v is None:
-            continue
-        
-        fmt = '.3e'
-        if n in ['MAPE', 'R²', 'R² adj.']:
-            fmt = '.3%'
-        
-        print(f'{n:>{espacos}s}: {v:{fmt}}')
-        
+    
     return metrics
