@@ -2,6 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os
+from typing import List
 import pandas as pd
 import numpy as np
 import datetime as dt
@@ -53,6 +54,30 @@ class modelo_produtos:
     def get_models(self):
         return self.modelo, self.serie_treino
     
+    def get_test_begin(self, produtos: List or None = None):
+        
+        if produtos is None:
+            produtos = self.produtos
+
+        serie_treino_prods = { p: s for p, s in self.serie_treino.items() if p in produtos }
+
+        train_end = pd.Series(
+            [ v.index[-1] for v in serie_treino_prods.values() ],
+            index = produtos
+        )
+
+        test_start = train_end + pd.offsets.MonthBegin(1)
+
+        return test_start
+
+    def get_all_test_begin(self):
+        
+        train_end = max([ v.index[-1] for v in self.serie_treino.values() ])
+
+        test_start = train_end + pd.offsets.MonthBegin(1)
+
+        return test_start
+
     def predict(self, n_periods: int, return_conf_int: bool = False,  *args, **kwards):
 
         if n_periods <= 0:
