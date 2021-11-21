@@ -139,3 +139,6 @@ secrets.py
 
 # model files
 models/*.model
+
+# arquivos dos colegas
+modelos_colegas/
