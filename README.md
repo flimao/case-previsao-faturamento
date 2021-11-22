@@ -67,6 +67,21 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 
 Os arquivos binários criados na pasta `models/` serão lidos por esse notebook para que a comparação seja feita.
 
+### IV. Conclusão
+
+Segue um gráfico comparando algumas métricas:
+
+![comparacao de métricas](./reports/imgs/metrics_comparison.png)
+
+Segue também a previsão final de cada modelo até dezembro de 2022:
+
+![previsão final até dezembro de 2022](./reports/imgs/prediction.png)
+
+Em resumo, **escolheríamos para uso em produção em nossa empresa o modelo que considera a soma dos modelos de cada produto (batizado de modelo *Megazord*)**, dado que
+
+* apresenta métricas (MAPE, RMSE e MAE) melhores. As métricas refletem diretamente o impacto para o negócio: qual é o erro médio ao se fazer uma previsão de faturamento em uma data qualquer; e
+* apresenta intervalo de confiança mais estreito. Esse critério também se relaciona com a probabilidade de se fazer uma previsão errada.
+
 ## Ambiente
 
 Para criar o ambiente Anaconda apropriado,
