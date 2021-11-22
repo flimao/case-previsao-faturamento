@@ -63,11 +63,11 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 
 ### III. [Comparação entre modelos](notebooks_exploration/8-comparacao.ipynb)
 
-
 ## Ambiente
 
 Para criar o ambiente Anaconda apropriado,
 
-```python
+```shell
 $ conda env create -f environment.yml
+conda: OK
 ```
