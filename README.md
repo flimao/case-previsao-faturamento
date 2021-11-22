@@ -52,8 +52,10 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
 
 ### II. Análise de séries temporais
 
+**Os notebooks abaixo necessariamente devem ser executados em sequência** para que os arquivos com os modelos em formato binário sejam criados na pasta `models/`
+
 1. [Modelo para faturamento total](notebooks_models/total_arima.ipynb)
-2. Produtos individuais (OBS: **os notebooks abaixo necessariamente devem ser executados em sequência** para que os arquivos com os modelos em formato binário sejam criados na pasta `models/`):
+2. Produtos individuais :
    1. [`alimenticio`](notebooks_models/produto_alimenticio_arima.ipynb)
    2. [`transporte`](notebooks_models/produto_transporte_arima.ipynb)
    3. [`saude`](notebooks_models/produto_saude_arima.ipynb)
@@ -62,6 +64,8 @@ Para ajudar no direcionamento e estratégia corporativa, bem como definir a meta
    6. [Modelo do faturamento total produto a produto](notebooks_models/todos_produtos_arima.ipynb)
 
 ### III. [Comparação entre modelos](notebooks_exploration/8-comparacao.ipynb)
+
+Os arquivos binários criados na pasta `models/` serão lidos por esse notebook para que a comparação seja feita.
 
 ## Ambiente
 
